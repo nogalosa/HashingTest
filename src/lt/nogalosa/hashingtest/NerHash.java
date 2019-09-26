@@ -17,7 +17,15 @@ public class NerHash {
     }
 
     public String hash() {
-        //TODO: hash
-        return toHash;
+        char[] charList = toHash.toCharArray();
+
+        long sum = 0;
+
+        char lastChar = '.';
+        for(char ch : charList){
+            sum += lastChar & ~ch;
+        }
+
+        return sum+"";
     }
 }
