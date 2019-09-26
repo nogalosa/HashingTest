@@ -15,6 +15,8 @@ public class NerHash {
         "882g4mrg0d",
         "jvyq8cm3j6",
     };
+    private long startTime = 0;
+    private long endTime = 0;
 
     public NerHash(String toHash) {
         this.toHash = toHash;
@@ -37,10 +39,20 @@ public class NerHash {
     }
 
     /**
+     * Returns how much time took to hash the string (in nanoseconds)
+     * @return time
+     */
+    public long getTimeTaken(){
+        return endTime - startTime;
+    }
+
+    /**
      * Hashes initial string and returns the hash
      * @return hash
      */
     public String hash() {
+        startTime = System.nanoTime();
+
         char[] charList = toHash.toCharArray();
 
         long sum = 0;
@@ -82,6 +94,9 @@ public class NerHash {
             currentPickIndex += currentValue^2;
             currentIndex++;
         }
+
+
+        endTime = System.nanoTime();
 
         return hash;
     }

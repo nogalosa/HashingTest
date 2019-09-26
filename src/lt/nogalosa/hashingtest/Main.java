@@ -36,22 +36,21 @@ public class Main {
         System.out.println("Pasirinkta " + selection + ".");
         System.out.println("");
 
-        if(selection == 1) {
-            NerHash nerHash = new NerHash(toHash);
-            System.out.println(nerHash.hash());
-        } else {
+        if(selection == 2) {
             try {
                 File file = new File(fileName);
                 Scanner sc = new Scanner(file);
 
                 toHash = sc.next();
-
-                NerHash nerHash = new NerHash(toHash);
-                System.out.println(nerHash.hash());
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
         }
+
+        NerHash nerHash = new NerHash(toHash);
+        System.out.println(nerHash.hash());
+        System.out.println("");
+        System.out.println("Užtruko " + nerHash.getTimeTaken()/1000 + " μs (" + nerHash.getTimeTaken()/1000/1000 + " ms)");
     }
 
 }
