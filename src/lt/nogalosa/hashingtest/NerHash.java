@@ -3,6 +3,18 @@ package lt.nogalosa.hashingtest;
 public class NerHash {
 
     private String toHash;
+    private final String[] picks = {
+            "EomOqHYz86",
+            "tAZ0vSB9ay",
+            "iyXroMFEKm",
+            "BIVvnFrLKs",
+            "GvSxp9MdDI",
+            "jud4cr7YUI",
+            "BSWI47Ne9S",
+            "F1r5VfhUgQ",
+            "ESGVpQgQxI",
+            "O0HRk7f6aR",
+    };
 
     public NerHash(String toHash) {
         this.toHash = toHash;
@@ -35,7 +47,25 @@ public class NerHash {
             lastChar = ch;
         }
 
+        char[] sumCharList = (sum + "").toCharArray();
 
-        return sum+"";
+        String hash = "";
+
+        int currentIndex = 0;
+        int currentPickIndex = 0;
+        for(int i = 0; i < 64; i++){
+            if(currentIndex >= sumCharList.length)
+                currentIndex = 0;
+            if(currentPickIndex >= picks.length)
+                currentPickIndex = currentPickIndex % picks.length;
+
+            int currentValue = Character.getNumericValue(sumCharList[currentIndex]);
+            hash += picks[currentPickIndex].charAt(currentValue);
+
+            currentPickIndex += currentValue^2 + 1;
+            currentIndex++;
+        }
+
+        return hash;
     }
 }
