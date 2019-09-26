@@ -20,14 +20,26 @@ public class NerHash {
         this.toHash = toHash;
     }
 
+    /**
+     * Returns initial string
+     * @return toHash
+     */
     public String getToHash() {
         return toHash;
     }
 
+    /**
+     * Sets initial string
+     * @param toHash
+     */
     public void setToHash(String toHash) {
         this.toHash = toHash;
     }
 
+    /**
+     * Hashes initial string and returns the hash
+     * @return hash
+     */
     public String hash() {
         char[] charList = toHash.toCharArray();
 
