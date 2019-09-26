@@ -4,16 +4,16 @@ public class NerHash {
 
     private String toHash;
     private final String[] picks = {
-            "EomOqHYz86",
-            "tAZ0vSB9ay",
-            "iyXroMFEKm",
-            "BIVvnFrLKs",
-            "GvSxp9MdDI",
-            "jud4cr7YUI",
-            "BSWI47Ne9S",
-            "F1r5VfhUgQ",
-            "ESGVpQgQxI",
-            "O0HRk7f6aR",
+        "3t5pdcnkgk",
+        "gnha9ym9hv",
+        "qyfucdyett",
+        "rnek4gmqkz",
+        "eo23956bfq",
+        "735a5rbpd9",
+        "mbfwe40u6y",
+        "03q6844can",
+        "882g4mrg0d",
+        "jvyq8cm3j6",
     };
 
     public NerHash(String toHash) {
@@ -51,18 +51,23 @@ public class NerHash {
 
         String hash = "";
 
-        int currentIndex = 0;
+        int currentIndex = Character.getNumericValue(sumCharList[sumCharList.length-1]);
         int currentPickIndex = 0;
+
         for(int i = 0; i < 64; i++){
-            if(currentIndex >= sumCharList.length)
-                currentIndex = 0;
             if(currentPickIndex >= picks.length)
                 currentPickIndex = currentPickIndex % picks.length;
+            if(currentIndex >= sumCharList.length){
+                currentIndex = 0;
+                if(currentPickIndex == 0){
+                    currentPickIndex = hash.length() % picks.length;
+                }
+            }
 
             int currentValue = Character.getNumericValue(sumCharList[currentIndex]);
             hash += picks[currentPickIndex].charAt(currentValue);
 
-            currentPickIndex += currentValue^2 + 1;
+            currentPickIndex += currentValue^2;
             currentIndex++;
         }
 
