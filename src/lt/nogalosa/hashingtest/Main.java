@@ -1,6 +1,7 @@
 package lt.nogalosa.hashingtest;
 
 import java.io.*;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -41,13 +42,16 @@ public class Main {
             ArrayList<String> generated = new ArrayList<>();
             while(generated.size() < 1000000) {
                 String string = generateString() + ", " + generateString();
-                while(generated.contains(string))
-                    string = generateString() + ", " + generateString();
+//                while(generated.contains(string))
+//                    string = generateString2() + ", " + generateString2();
                 generated.add(string);
+
+                if(generated.size() % 1000 == 0)
+                    System.out.println(generated.size() + "...");
             }
             System.out.println("Irasoma...");
             try {
-                BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+                BufferedWriter writer = new BufferedWriter(new FileWriter("a1000000.txt"));
 
                 for(String string : generated)
                     writer.write(string + "\n");
@@ -92,7 +96,7 @@ public class Main {
 
     public static String generateString() {
 
-        int leftLimit = 97; // letter 'a'
+        int leftLimit = 48; // 0
         int rightLimit = 122; // letter 'z'
         int targetStringLength = 5;
         StringBuilder buffer = new StringBuilder(targetStringLength);
@@ -102,6 +106,14 @@ public class Main {
             buffer.append((char) randomLimitedInt);
         }
         String generatedString = buffer.toString();
+
+        return generatedString;
+    }
+
+    public static String generateString2() {
+        byte[] array = new byte[5]; // length is bounded by 7
+        new Random().nextBytes(array);
+        String generatedString = new String(array, Charset.forName("UTF-8"));
 
         return generatedString;
     }
