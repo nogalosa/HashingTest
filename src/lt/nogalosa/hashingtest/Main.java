@@ -27,11 +27,7 @@ public class Main {
         String input = scanner.nextLine();
         int selection = 0;
         try {
-            if(Integer.parseInt(input) == 2){
-                selection = 2;
-            } else {
-                selection = 1;
-            }
+            selection = Integer.parseInt(input);
         }catch(Exception e) {
             e.printStackTrace();
         }
