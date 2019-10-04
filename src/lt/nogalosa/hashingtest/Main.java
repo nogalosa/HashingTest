@@ -23,6 +23,7 @@ public class Main {
         System.out.println("2) Hashuoti is failo "+ (fileName!="" ? "("+fileName+")" : "(Negalima - failas nenurodytas)"));
         System.out.println("Kita...");
         System.out.println("3) Sugeneruoti a1000000.txt faila");
+        System.out.println("4) Patikrinti a1000000.txt faila");
 
 
         String input = scanner.nextLine();
@@ -37,6 +38,35 @@ public class Main {
         System.out.println("Pasirinkta " + selection + ".");
         System.out.println("");
 
+        if(selection == 4) {
+            System.out.println("Tikrinama...");
+            try {
+                File file = new File("a1000000.txt");
+                Scanner sc = new Scanner(file);
+                ArrayList<String> toHashes = new ArrayList<>();
+
+                while(sc.hasNextLine()) {
+                    toHash = sc.nextLine();
+                    toHashes.add(toHash);
+                }
+                long time = 0;
+                for(String str : toHashes) {
+                    String[] split = str.split(", ");
+                    NerHash nerHash1 = new NerHash(split[0]);
+                    NerHash nerHash2 = new NerHash(split[1]);
+                    if(nerHash1.hash().equals(nerHash2)){
+                        System.out.println(str + " hashai sutampa!");
+                    }
+                    time += nerHash1.getTimeTaken()/1000;
+                    time += nerHash2.getTimeTaken()/1000;
+                }
+                System.out.println("Uztruko " + time + " μs(mikro) (" + time/1000 + " ms)");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+            System.out.println("Baigta.");
+        }else
         if(selection == 3) {
             System.out.println("Generuojama...");
             ArrayList<String> generated = new ArrayList<>();

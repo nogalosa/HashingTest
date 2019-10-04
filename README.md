@@ -11,3 +11,4 @@ An experimental hashing algorithm by me.
 | loremipsum2 (10017 simb.) | `5ccyb8pq4bvyeeq4bvyeeq4bvyeeq4bvyeeq4bvyeeq4bvyeeq4bvyeeq4bvyeeq` | 3003 μs | 
 | loremipsum2 (10017 simb.) su pakeistu vienu simboliu | `n259bcmrfd3o4e05re3c0megk3m74hygn4rbycun5gmq4bvdjm5re3c0megk3m74` | 15987 μs |
 | konstitucija | `c8nm4qrc8g46c8nm4qrc8g46c8nm4qrc8g46c8nm4qrc8g46c8nm4qrc8g46c8nm...` | 123513 μs (124 ms) |
+| a1000000 | Iš 1 000 000 porų nei vienas hashas nesutapo | 5917 ms |
